@@ -1,0 +1,4 @@
+sonos
+=====
+
+Wrapper for PHPSonos
