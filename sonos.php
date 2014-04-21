@@ -185,6 +185,11 @@ class Sonos
                 $this->_PHPSonos->Play();
         }  
         
+        protected function _actionStop()
+	{
+                $this->_PHPSonos->Stop();
+        }         
+        
         protected function _actionTogglePlayStop()
 	{
                 if($this->_PHPSonos->GetTransportInfo() == 1)
