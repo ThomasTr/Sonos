@@ -226,9 +226,6 @@ class Sonos
         
         protected function _actionVolume()
 	{
-                $track = $this->_assertNumeric($_GET['track']);
-                $this->_PHPSonos->RemoveFromQueue($track);
-                
                 $volume = $this->_assertNumeric($_GET['volume']);
                 
                 if($volume < 0 | $volume > 100)
