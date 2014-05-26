@@ -53,7 +53,7 @@ http://yourserver/sonos/index.php?zone=kitchen&action=nextRadio
 
 ###Play message 
 ``` 
-http://yourserver/sonos/index.php?zone=kitchen&action=Message&MessageId=1 
+http://yourserver/sonos/index.php?zone=kitchen&action=sendMessage&messageId=1&volume=20
 ``` 
 Stops current playing radio/list, plays the message 1.mp3, continues previously played radio/list 
 
