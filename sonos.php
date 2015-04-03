@@ -55,8 +55,8 @@ class Sonos
                         $action = !empty($_GET['action']) ? $_GET['action'] : '';
                 }
                 
-        // handle zonenames in UTF-8
-        $zone = !empty($_GET['zone']) ? utf8_encode($_GET['zone']) : '';
+		// handle zonenames in UTF-8
+        	$zone = !empty($_GET['zone']) ? utf8_encode($_GET['zone']) : '';
 		
 		$this->_zone_ip = $this->_assertZone($zone);
 		
