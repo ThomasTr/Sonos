@@ -6,7 +6,6 @@ $config = array(
                 'Kueche' => '192.168.2.71',
                 'Buero'  => '192.168.2.72',
                 'Wohnen' => '192.168.2.73',
-                'Kök' => '192.168.1.26',
 	),
 	'radiostations' => array(
 		'DasDing'  => 'swr-mp3-m-dasding.akacast.akamaistream.net/7/588/137139/v1/gnl.akacast.akamaistream.net/swr-mp3-m-dasding',
@@ -16,7 +15,7 @@ $config = array(
 	),
         'messagePath'   => '//nas1/music/_Sprachmeldungen/',
         'messageStorePath'   => '/c/music/_Sprachmeldungen/',
-        'messageLang'   => 'sv',
+        'messageLang'   => 'de',
         'currentRadio'  => 'currentRadio.txt',
         'filePhpSonos'  => 'PHPSonos.inc.php',
         'logging'       => true,
