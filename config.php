@@ -14,6 +14,8 @@ $config = array(
                 'Donau3FM' => 'server1.webradiostreaming.de:2640',
 	),
         'messagePath'   => '//nas1/music/_Sprachmeldungen/',
+        'messageStorePath'   => '/c/music/_Sprachmeldungen/',
+        'messageLang'   => 'de',
         'currentRadio'  => 'currentRadio.txt',
         'filePhpSonos'  => 'PHPSonos.inc.php',
         'logging'       => true,

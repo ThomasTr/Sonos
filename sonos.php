@@ -55,7 +55,8 @@ class Sonos
                         $action = !empty($_GET['action']) ? $_GET['action'] : '';
                 }
                 
-		$zone = !empty($_GET['zone']) ? $_GET['zone'] : '';
+		// handle zonenames in UTF-8
+        	$zone = !empty($_GET['zone']) ? utf8_encode($_GET['zone']) : '';
 		
 		$this->_zone_ip = $this->_assertZone($zone);
 		
@@ -302,17 +303,46 @@ class Sonos
          * int $volume volume for the message to play
          *
          * to build voice messages, visit: http://www2.research.att.com/~ttsweb/tts/demo.php     
+		 * OR
+		 * Play a TTS message through Google API in several languages.
+		 * @param string message words to be played separated by spaces
+		 * @param string lang language to be used to override default setting in config file
          */        
         protected function _actionSendMessage()
 	{
-                $messageId = $this->_assertNumeric($_GET['messageId']);
+		// allow calls without messageId
+		$messageId = !empty($_GET['messageId']) ? $_GET['messageId'] : '0';
+		$messageId = $this->_assertNumeric($messageId);
+
                 $volume   = $this->_assertNumeric($_GET['volume']);
+
+		// handle TTS message
+		$message  = !empty($_GET['message']) ? $_GET['message'] : '';        
+		if (($messageId == '0') && ($message != ''))
+		{
+			// allow use of specified language instead of configured one
+			$lang     = !empty($_GET['lang']) ? $_GET['lang'] : $this->_config['messageLang'];
+		 
+			$message  = urlencode($message); //TODO limit to match API < 100 characters and clean out non alphabetical charachters
+			$filename     = $message;
+			$file = $this->_config['messageStorePath'] . $filename;
+
+			// if message already exists, don't make a call too Google
+			if (!file_exists($file . '.mp3'))
+			{
+			ini_set('user_agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36');
+			$audio = file_get_contents('http://translate.google.com/translate_tts?ie=UTF-8&q=' . $message . '&tl=' . $lang);
+			file_put_contents($file . '.mp3', $audio);
+			}
+			// rewrite the TTS filename into messageId for play
+			$messageId = $filename;
+		}
                 
                 // save informations 
                 $saveVolume       = $this->_PHPSonos->GetVolume(); 
                 $savePositionInfo = $this->_PHPSonos->GetPositionInfo();
                 $saveMediaInfo    = $this->_PHPSonos->GetMediaInfo();
-                $radio            = (strpos($saveMediaInfo['CurrentURI'], "x-sonosapi-stream:") > 0) === false;
+                $radio            = (strpos($saveMediaInfo['CurrentURI'], "x-sonosapi-stream:")) !== false;
 
                 $oldti = $this->_PHPSonos->GetTransportInfo();
 
