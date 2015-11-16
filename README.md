@@ -58,6 +58,21 @@ http://yourserver/sonos/index.php?zone=kitchen&action=nextRadio
 http://yourserver/sonos/index.php?zone=kitchen&action=PrevRadio 
 ``` 
 
+###Media info 
+``` 
+http://yourserver/sonos/index.php?zone=kitchen&action=GetMediaInfo 
+``` 
+
+###Position info 
+``` 
+http://yourserver/sonos/index.php?zone=kitchen&action=GetPositionInfo 
+``` 
+
+###Is Sonos playing? 1=playing, 2=pause, 3=stop 
+``` 
+http://yourserver/sonos/index.php?zone=kitchen&action=GetTransportInfo 
+``` 
+
 ###Play message 
 ``` 
 http://yourserver/sonos/index.php?zone=kitchen&action=sendMessage&messageId=1&volume=20
