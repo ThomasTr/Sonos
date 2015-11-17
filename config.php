@@ -19,10 +19,10 @@ $config = array(
         'messagePath'   		=> '//<yourpath>/sonos/spraak/',
         'messageStorePath'   		=> '//<yourpath>/sonos/spraak/',
 	'messageRelativePath'		=> './spraak/',
-        'messageLang'   		=> 'nl',
+        'messageLang'   		=> 'nl-nl',
         'currentRadio'  		=> 'currentRadio.txt',
         'filePhpSonos'  		=> 'PHPSonos.inc.php',
         'logging'       		=> false,
         'logfile'       		=> 'log.txt',
-	'tssapikey'			=> '<apikey_from_voicerrs.org>',
+	'tssapikey'			=> '<fill with apikey from voicerrs.org>',
 );
