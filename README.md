@@ -3,7 +3,7 @@ sonos a wrapper for PHPSonos
 
 ## Introduction 
 Forked from [ThomasTr/sonos](https://github.com/ThomasTr/sonos) and changed it a bit.
-I use this in combination with Domoticz and my [Frontpage](https://github.com/gerard33/frontpage)
+I use this in combination with Domoticz and my [Frontpage](https://github.com/gerard33/frontpage).
 
 *sonos* is a wrapper arround the php class PHPSonos to control sonos player via urls from a home automation server. 
 
