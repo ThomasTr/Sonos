@@ -2,8 +2,8 @@
 
 $config = array(
 	'zones' => array(
-                '115'   => '192.168.1.161', /* Office, number is IDX in Domoticz */
-		'116'   => '192.168.1.196', /* Kitchen, number is IDX in Domoticz */
+                '115'   => '192.168.1.161', /* Office, 115 is IDX in Domoticz */
+		'116'   => '192.168.1.196', /* Kitchen, 116 is IDX in Domoticz */
 	),
 	'radiostations' => array(
 		'Radio 538'      	=> 'vip-icecast.538.lw.triple-it.nl/RADIO538_MP3',
@@ -16,8 +16,8 @@ $config = array(
 		'Skyradio'		=> '8563.live.streamtheworld.com:80/SKYRADIOAAC_SC?TGT=TuneIn&DIST=TuneIn',
 		'Zappelin'		=> 'icecast.omroep.nl/zappelinradio-bb-aac',
 	),
-        'messagePath'   		=> '//NAS_GZ/web/domoticz/fp/sonos/spraak/',
-        'messageStorePath'   		=> '//NAS_GZ/web/domoticz/fp/sonos/spraak/',
+        'messagePath'   		=> '//<yourpath>/sonos/spraak/',
+        'messageStorePath'   		=> '//<yourpath>/sonos/spraak/',
 	'messageRelativePath'		=> './spraak/',
         'messageLang'   		=> 'nl',
         'currentRadio'  		=> 'currentRadio.txt',
