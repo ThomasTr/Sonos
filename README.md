@@ -81,7 +81,7 @@ http://yourserver/sonos/index.php?zone=kitchen&action=sendMessage&messageId=1&vo
 Stops current playing radio/list, plays the message 1.mp3, continues previously played radio/list 
 
 ``` 
-http://yourserver/sonos//index.php?zone=kitchen&action=sendMessage&message=Hello world&volume=55&lang=en
+http://yourserver/sonos//index.php?zone=kitchen&action=sendMessage&message=Hello world&volume=55&lang=en-gb
 ``` 
 Stops current playing radio/list, plays the message "Hello world", continues previously played radio/list
 
