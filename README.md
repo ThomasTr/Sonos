@@ -14,7 +14,8 @@ Checkout repository to a directory of your php enabled webserver (in this case '
 ## Configuration 
 Configuration is done in config.php. 
 Add your zones and favourite Radiostations. 
-Config path for messages must be accessible from sonos player. 
+Config path for messages must be accessible from sonos player.
+If you want to use TTS then make an account at www.voicerrs.org and put the API key in the config file.
 
 Be sure your webserver can write in this directory (here 'sonos'), current playing radiostation is saved in a text file. 
 
