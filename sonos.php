@@ -406,7 +406,7 @@ class Sonos
 				//Google TTS not working from PHP
 				//www.voicerss.org
 				$api_key = $this->_config['tssapikey'];
-				$audio = file_get_contents('https://api.voicerss.org/?key=' . $api_key . '&c=mp3&f=16khz_8bit_mono&hl=nl-nl&r=0&src=' .$message);
+				$audio = file_get_contents('https://api.voicerss.org/?key=' . $api_key . '&c=mp3&f=16khz_8bit_mono&hl=' . $lang . '&r=0&src=' .$message);
 				//echo "$audio";
 				/* End changed */
 				//file_put_contents($file . '.mp3', $audio);
