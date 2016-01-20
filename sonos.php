@@ -348,7 +348,7 @@ class Sonos
 
                 // set AVT to message
                 $this->_PHPSonos->SetVolume($volume);
-                $this->_PHPSonos->SetAVTransportURI('x-file-cifs:' . $this->_config['messagePath'] . $messageId . '.mp3');
+                $this->_PHPSonos->SetAVTransportURI($this->_config['messagePath'] . $messageId . '.mp3');
                 $this->_PHPSonos->Play();
 
                 // wait until message is done
