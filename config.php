@@ -16,8 +16,10 @@ $config = array(
 		'Skyradio'		=> '8563.live.streamtheworld.com:80/SKYRADIOAAC_SC?TGT=TuneIn&DIST=TuneIn',
 		'Zappelin'		=> 'icecast.omroep.nl/zappelinradio-bb-aac',
 	),
-        'messagePath'   		=> '//<yourpath>/sonos/spraak/',
-        'messageStorePath'   		=> '//<yourpath>/sonos/spraak/',
+        'messagePath'   		=> 'x-file-cifs://<yourpath>/sonos/spraak/',
+        'messageStorePath'   		=> 'x-file-cifs://<yourpath>/sonos/spraak/',
+//        'messagePath'   		=> 'http://<your rpi IP>/sonos/spraak/',  // for f.e. a RPI
+//        'messageStorePath'   		=> 'http://<your rpi IP>/sonos/spraak/',        
 	'messageRelativePath'		=> './spraak/',
         'messageLang'   		=> 'nl-nl',
         'currentRadio'  		=> 'currentRadio.txt',
