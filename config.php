@@ -13,8 +13,10 @@ $config = array(
 		'SWR3'     => 'mp3-live.swr3.de/swr3_m.m3u',
                 'Donau3FM' => 'server1.webradiostreaming.de:2640',
 	),
-        'messagePath'   => '//nas1/music/_Sprachmeldungen/',
-        'messageStorePath'   => '/c/music/_Sprachmeldungen/',
+        'messagePath'   => 'x-file-cifs://nas1/music/_Sprachmeldungen/',
+        'messageStorePath'   => 'x-file-cifs:/c/music/_Sprachmeldungen/',
+//        'messagePath'   		=> 'http://<your rpi IP>/sonos/spraak/',  // for f.e. a RPI
+//        'messageStorePath'   	=> 'http://<your rpi IP>/sonos/spraak/',	        
         'messageLang'   => 'de',
         'currentRadio'  => 'currentRadio.txt',
         'filePhpSonos'  => 'PHPSonos.inc.php',
