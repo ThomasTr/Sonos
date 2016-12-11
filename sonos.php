@@ -236,6 +236,13 @@ class Sonos
                 $this->_PHPSonos->SetVolume($volume);
         }  
         
+	protected function _actionSetvol()
+	{
+		$volume = $_GET['volume'];
+		$volume = $this->_assertNumeric($volume);
+		$this->_PHPSonos->SetVolume($volume);
+        }
+	
         protected function _actionVolumeUp()
 	{
                 $volume = $this->_PHPSonos->GetVolume();
