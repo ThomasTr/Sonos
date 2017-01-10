@@ -342,7 +342,7 @@ class Sonos
                 $saveVolume       = $this->_PHPSonos->GetVolume(); 
                 $savePositionInfo = $this->_PHPSonos->GetPositionInfo();
                 $saveMediaInfo    = $this->_PHPSonos->GetMediaInfo();
-                $radio            = (strpos($saveMediaInfo['CurrentURI'], "x-sonosapi-stream:")) !== false;
+		$radio		  = (strpos($saveMediaInfo['CurrentURI'], "x-rincon-mp3radio:")) !== false;
 
                 $oldti = $this->_PHPSonos->GetTransportInfo();
 
