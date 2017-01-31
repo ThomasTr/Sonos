@@ -1627,7 +1627,7 @@ CONTENT-LENGTH: '.(342+strlen(htmlspecialchars($tspuri))+strlen($MetaData)).'
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI"
 
-<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body><u:SetAVTransportURI xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"><InstanceID>0</InstanceID><CurrentURI>'.htmlspecialchars($tspuri).'</CurrentURI><CurrentURIMetaData>'.$MetaData.'.</CurrentURIMetaData></u:SetAVTransportURI></s:Body></s:Envelope>';
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><s:Body><u:SetAVTransportURI xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"><InstanceID>0</InstanceID><CurrentURI>'.htmlspecialchars($tspuri).'</CurrentURI><CurrentURIMetaData>'.$MetaData.'</CurrentURIMetaData></u:SetAVTransportURI></s:Body></s:Envelope>';
 
 		$this->sendPacket($content);
 	}
