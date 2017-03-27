@@ -56,14 +56,21 @@ class Sonos
                 }
                 
 		// handle zonenames in UTF-8
-        	$zone = !empty($_GET['zone']) ? utf8_encode($_GET['zone']) : '';
+        $zone = !empty($_GET['zone']) ? utf8_encode($_GET['zone']) : '';
 		
 		$this->_zone_ip = $this->_assertZone($zone);
-		
+				
 		$this->_getPHPSonos();
-		$this->_PHPSonos = new PHPSonos($this->_zone_ip);		
+		$this->_PHPSonos = new PHPSonos($this->_zone_ip);
 		
 		$this->_assertAction($action);
+		
+		//get volume if set
+		//$volume = !empty($_GET['volume']) ? ($_GET['volume']) : '';
+		//$volume = $this->_assertNumeric($_GET['volume']);
+		//$this->_PHPSonos->SetVolume($volume);
+		//volume
+		
         }
         
         protected function _assertZone($zone)
@@ -227,6 +234,7 @@ class Sonos
         protected function _actionVolume()
 	{
                 $volume = $this->_assertNumeric($_GET['volume']);
+				//echo $volume;
                 
                 if($volume < 0 | $volume > 100)
                 {        
@@ -235,14 +243,17 @@ class Sonos
                 
                 $this->_PHPSonos->SetVolume($volume);
         }  
-        
-	protected function _actionSetvol()
+    
+		protected function _actionSetvol()
 	{
-		$volume = $_GET['volume'];
-		$volume = $this->_assertNumeric($volume);
-		$this->_PHPSonos->SetVolume($volume);
+				//use: &action=Setvol&volume=2
+				//get volume, if no volume is given set it to 2
+				//$volume = !empty($_GET['volume']) ? $_GET['volume'] : '2';
+				$volume = $_GET['volume'];
+				$volume = $this->_assertNumeric($volume);
+				$this->_PHPSonos->SetVolume($volume);
         }
-	
+    
         protected function _actionVolumeUp()
 	{
                 $volume = $this->_PHPSonos->GetVolume();
@@ -345,18 +356,28 @@ class Sonos
 				print_r($nextRadioP);
         }
 				
-		/*Added, to be updated */
+		/*Added GZ, to be updated */
 		protected function _action538()
         {
-                $this->_PHPSonos->SetRadio("x-rincon-mp3radio://vip-icecast.538.lw.triple-it.nl/RADIO538_MP3", "538");
+                $this->_PHPSonos->SetRadio("x-rincon-mp3radio://vip-icecast.538.lw.triple-it.nl/RADIO538_MP3", "Radio 538");
                 $this->_PHPSonos->Play();
+				//get volume, if no volume is given set it to 2
+				$volume = !empty($_GET['volume']) ? $_GET['volume'] : '2';
+				$volume = $this->_assertNumeric($volume);
+				$this->_PHPSonos->SetVolume($volume);
+				echo "{ OK }";
         }
 		protected function _actionQmusicns()
         {
-                $this->_PHPSonos->SetRadio("x-rincon-mp3radio://icecast-qmusic.cdp.triple-it.nl/Qmusic_nl_nonstop_96", "QMusic Nonstop");
+                $this->_PHPSonos->SetRadio("x-rincon-mp3radio://icecast-qmusic.cdp.triple-it.nl/Qmusic_nl_nonstop_96.mp3", "QMusic Nonstop");
                 $this->_PHPSonos->Play();
+				//get volume, if no volume is given set it to 2
+				$volume = !empty($_GET['volume']) ? $_GET['volume'] : '2';
+				$volume = $this->_assertNumeric($volume);
+				$this->_PHPSonos->SetVolume($volume);
+				echo "{ OK }";
         }
-        /*Added, to be updated */
+        /*Added GZ, to be updated */
 				
         /**
          * save current music status, play predefined message, restore previous status
@@ -392,7 +413,7 @@ class Sonos
 			$lang     = !empty($_GET['lang']) ? $_GET['lang'] : $this->_config['messageLang'];
 		 
 			$message  = urlencode($message); //TODO limit to match API < 100 characters and clean out non alphabetical charachters
-			$filename     = $message;
+			$filename = $message;
 			$file = $this->_config['messageStorePath'] . $filename;
 			$file_to_search = $this->_config['messageRelativePath'] . $filename. '.mp3'; //added this because otherwise the file isn't searched in the right way
 			//echo "$file_to_search";
@@ -405,7 +426,7 @@ class Sonos
 				echo "<br>";
 				echo "<div style ='font:14px Arial,tahoma,sans-serif;color:black'>File doesn't exist, make a new file</div>";
 				ini_set('user_agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36');
-				/* Changed */
+				/* Changed GZ */
 				//$audio = file_get_contents('http://translate.google.com/translate_tts?ie=UTF-8&q=' . $message . '&tl=' . $lang);
 				//$audio = file_get_contents('http://translate.google.com/translate_tts?tl=' . $lang . '&q=' . $message . '&ie=UTF-8&total=1&idx=0&client=Mozilla');
 				//$audio = file_get_contents('http://translate.google.com/translate_tts?ie=UTF-8&q=' . $message . '&tl=' . $lang . '&client=t');
@@ -414,8 +435,13 @@ class Sonos
 				//www.voicerss.org
 				$api_key = $this->_config['tssapikey'];
 				$audio = file_get_contents('https://api.voicerss.org/?key=' . $api_key . '&c=mp3&f=16khz_8bit_mono&hl=' . $lang . '&r=0&src=' .$message);
+				/*
+				Gebruik de volgende URL om een TTS file bij Google te saven
+				https://translate.google.com/translate_tts?ie=UTF-8&q=de%20wasmachine%20is%20klaar&tl=nl-nl&client=tw-ob
+				*/
+				//$audio = file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&q=de%20wasmachine%20is%20klaar&tl=nl-nl&client=tw-ob');
 				//echo "$audio";
-				/* End changed */
+				/* End changed GZ */
 				//file_put_contents($file . '.mp3', $audio);
 				file_put_contents($file_to_search, $audio);
 			}
@@ -427,10 +453,10 @@ class Sonos
                 $saveVolume       = $this->_PHPSonos->GetVolume();
 				$savePositionInfo = $this->_PHPSonos->GetPositionInfo();
                 $saveMediaInfo    = $this->_PHPSonos->GetMediaInfo();
-				/* Changed */
+				/* Changed GZ */
 				//$savePositionInfo_print = $this->_outflat($this->_PHPSonos->GetPositionInfo()); //to show information in normal layout not in array
                 //$saveMediaInfo_print    = $this->_outflat($this->_PHPSonos->GetMediaInfo()); //to show information in normal layout not in array
-				/* End changed */
+				/* End changed GZ */
 				//echo "Volume: $saveVolume";
 				//echo "Postion info: $savePositionInfo";
 				//echo "Media info: $saveMediaInfo";
@@ -442,10 +468,12 @@ class Sonos
 
                 // set AVT to message
                 $this->_PHPSonos->SetVolume($volume);
-                $this->_PHPSonos->SetAVTransportURI($this->_config['messagePath'] . $messageId . '.mp3');
+                //$this->_PHPSonos->SetAVTransportURI('x-file-cifs:' . $this->_config['messagePath'] . $messageId . '.mp3');
+				$this->_PHPSonos->SetAVTransportURI($this->_config['messagePath'] . $messageId . '.mp3');
                 $this->_PHPSonos->Play();
 				echo "<br>";
 				echo "<div style ='font:14px Arial,tahoma,sans-serif;color:black'>Played: $message</div>";
+				echo "<div style ='font:14px Arial,tahoma,sans-serif;color:black'>Language: $lang</div>";
 				
                 // wait until message is done
                 while ($this->_PHPSonos->GetTransportInfo() == '' || $this->_PHPSonos->GetTransportInfo() == 1) 
@@ -534,12 +562,12 @@ class Sonos
 	
 	protected function _out($data)
 	{
-		//commented out
+		//commented out GZ
 		//echo '<PRE>';
 		//print_r($data);
 		//echo '</PRE>';
 		//done this to give an array output which can be read in JSON
-		//commented out
+		//commented out GZ
 		$js_array = json_encode($data);
 		print_r($js_array);
 	}
